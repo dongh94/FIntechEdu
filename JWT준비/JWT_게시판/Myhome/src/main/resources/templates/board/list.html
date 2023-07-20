@@ -19,7 +19,7 @@
 
 <div class="container">
     <h2>게시판</h2>
-    <div>총 건수 : <span th:text="${#lists.size(boardList)}"></span></div>
+    <div>총 건수 : <span th:text="${boards.totalElements}"></span></div>
     <table class="table table-striped">
         <thead>
         <tr>
@@ -29,14 +29,36 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="board : ${boardList}">
-            <td th:text="${board.id}">Mark</td>
-            <td th:text="${board.title}">Otto</td>
+        <tr th:each="board : ${boards}">
+            <td th:text="${board.id}">Id</td>
+            <td><a th:text="${board.title}" th:href="@{/api/v1/board/form(id=${board.id})}">Title</a></td>
             <td>홍길동</td>
         </tr>
     </table>
+
+<!--    페이지네이션-->
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+            <!-- Previous 0 부터 param은 주소창 -->
+            <li class="page-item" th:classappend="${1 == boards.pageable.pageNumber + 1} ? 'disabled'">
+                <a class="page-link" href="#"
+                   th:href="@{/board/list(page=${boards.pageable.pageNumber - 1},searchText=${param.searchText})}"
+                   tabindex="-1" aria-disabled="true">Previous</a>
+            </li>
+            <!-- one -->
+            <li class="page-item" th:classappend="${i == boards.pageable.pageNumber + 1} ? 'disabled'" th:each="i : ${#numbers.sequence(startPage, endPage)}">
+                <a class="page-link" href="#" th:href="@{/api/v1/board/list(page=${i - 1},searchText=${param.searchText})}" th:text="${i}">1</a>
+            </li>
+            <!-- Next -->
+            <li class="page-item" th:classappend="${boards.totalPages == boards.pageable.pageNumber + 1} ? 'disabled'">
+                <a class="page-link" href="#" th:href="@{/api/v1/board/list(page=${boards.pageable.pageNumber + 1},searchText=${param.searchText})}">Next</a>
+            </li>
+        </ul>
+    </nav>
+
+
     <div class="text-right">
-        <button type="button" class="btn btn-primary">쓰기</button>
+        <a type="button" class="btn btn-primary" th:href="@{/api/v1/board/form}">쓰기</a>
     </div>
 </div>
 
