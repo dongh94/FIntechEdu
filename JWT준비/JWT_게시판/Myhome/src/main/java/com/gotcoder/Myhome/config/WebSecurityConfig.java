@@ -1,37 +1,44 @@
 package com.gotcoder.Myhome.config;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.web.WebSecurityConfigurer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.web.SecurityFilterChain;
 
 import javax.sql.DataSource;
 
 @Configuration
 @EnableWebSecurity
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+public class WebSecurityConfig {
 
-    @Autowired
-    private DataSource dataSource;
+    private final DataSource dataSource;
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
+    public WebSecurityConfig(DataSource dataSource) {
+        this.dataSource = dataSource;
+    }
+
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .authorizeRequests()
-                .antMatchers("/", "/account/register", "/css/**").permitAll()
+            .authorizeHttpRequests((requests) -> requests
+                .requestMatchers("/api/v1/home", "/", "/css/**.css", "/account/register").permitAll()
                 .anyRequest().authenticated()
-                .and()
-                .formLogin()
+            )
+            .formLogin((form) -> form
                 .loginPage("/account/login")
                 .permitAll()
-                .and()
-                .logout()
-                .permitAll();
+            )
+            .logout((logout) -> logout.permitAll());
+
+        return http.build();
     }
 
     @Autowired
@@ -40,7 +47,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         auth.jdbcAuthentication()
                 .dataSource(dataSource)
                 .passwordEncoder(passwordEncoder())
-                .usersByUsernameQuery("select username, password, enabled "
+                .usersByUsernameQuery("select username,password,enabled "
                         + "from user "
                         + "where username = ?")
                 .authoritiesByUsernameQuery("select u.username, r.name "
@@ -53,4 +60,5 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
 }
