@@ -42,7 +42,7 @@
         <tr th:each="board : ${boards}">
             <td th:text="${board.id}">Id</td>
             <td><a th:text="${board.title}" th:href="@{/api/v1/board/form(id=${board.id})}">Title</a></td>
-            <td>홍길동</td>
+            <td th:text="${board.user.username}">홍길동</td>
         </tr>
     </table>
 

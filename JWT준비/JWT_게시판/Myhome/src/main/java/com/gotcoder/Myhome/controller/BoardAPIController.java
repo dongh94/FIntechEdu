@@ -3,6 +3,7 @@ package com.gotcoder.Myhome.controller;
 import com.gotcoder.Myhome.model.Board;
 import com.gotcoder.Myhome.repository.BoardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 import org.thymeleaf.util.StringUtils;
 
@@ -48,7 +49,7 @@ public class BoardAPIController {
                     return boardRepository.save(board);
                 });
     }
-
+    @Secured("ROLE_ADMIN")
     @DeleteMapping("/boards/{id}")
     public void deleteBoard(@PathVariable Long id) {
         boardRepository.deleteById(id);
