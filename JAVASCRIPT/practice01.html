@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script src="/practice01.js"></script>
+  <script>
+    // 변수
+    let message1;
+    message1 = 'Hello'; // 문자열을 저장합니다.
+    alert(message1); // 변수에 저장된 값을 보여줍니다.
+    let user = 'John', age = 25, message2 = 'Hello';
+    // 상수
+    const myBirthday = '18.04.1982';
+    // myBirthday = '01.01.2001'; // error, can't reassign the constant!
+    const COLOR_RED = "#F00";
+    const COLOR_GREEN = "#0F0";
+    const COLOR_BLUE = "#00F";
+    const COLOR_ORANGE = "#FF7F00";
+
+    // 색상을 고르고 싶을 때 별칭을 사용할 수 있게 되었습니다.
+    let color = COLOR_ORANGE;
+    alert(color); // #FF7F00
+    // 과제
+    // admin과 name이라는 변수를 선언하세요.
+    let admin, name;
+    // name에 값으로 "John"을 할당해 보세요.
+    name = "John";
+    // name의 값을 admin에 복사해 보세요.
+    admin = name;
+    // admin의 값을 alert 창에 띄워보세요. "John"이 출력되어야 합니다.
+    alert(admin);
+    // 행성 변수 이름 짓기
+    let ourPlanetName = "Earth";
+    // 현재 방문자를 나타내는 변수 이름 짓기
+    let currentUserName = "John";
+
+    //숫자형 
+    //Infinity, -Infinity, NaN
+    let n = 123;
+    n = 12.345;
+
+    //BigInt형
+    //끝에 'n'이 붙으면 BigInt형 자료입니다.
+    const bigInt = 1234567890123456789012345678901234567890n;
+
+    // 문자열
+    // 자바스크립트에선 문자열(string)을 따옴표로 묶습니다.
+    let str = "Hello";
+    let str2 = 'Single quotes are ok too';
+    let phrase = `can embed another ${str}`;
+    // 백틱
+    // 변수를 문자열 중간에 삽입
+    alert( `Hello, ${name}!` ); // Hello, John!
+
+    // 표현식을 문자열 중간에 삽입
+    alert( `the result is ${1 + 2}` ); // the result is 3
+
+    // 불린형
+    let nameFieldChecked = true; // 네, name field가 확인되었습니다(checked).
+    let ageFieldChecked = false; // 아니요, age field를 확인하지 않았습니다(not checked)
+
+    //‘null’ 값
+    //null 값은 지금까지 소개한 자료형 중 어느 자료형에도 속하지 않는 값입니다.
+    let age1 = null;
+
+    //‘undefined’ 값
+    //undefined는 '값이 할당되지 않은 상태’를 나타낼 때 사용합니다
+    let age2;
+    alert(age2); // 'undefined'가 출력됩니다.
+
+    //객체와 심볼
+    //객체(object)형은 특수한 자료형입니다.
+
+    //typeof 연산자
+    //typeof 연산자는 인수의 자료형을 반환합니다
+    typeof undefined // "undefined"
+    typeof 0 // "number"
+    typeof 10n // "bigint"
+    typeof true // "boolean"
+    typeof "foo" // "string"
+    typeof Symbol("id") // "symbol"
+    typeof Math // "object"  (1)
+    typeof null // "object"  (2)
+    typeof alert // "function"  (3)
+    
+    // prompt
+    //브라우저에서 제공하는 prompt 함수는 두 개의 인수를 받습니다.
+    //prompt(title, [default]);
+    let age3 = prompt('나이를 입력해주세요.', 100);
+    alert(`당신의 나이는 ${age3}살 입니다.`); // 당신의 나이는 100살입니다.
+
+    // 컨펌 대화상자
+    // 사용자가 확인 버튼을 누르면 true, 그 외의 경우는 false를 반환합니다.
+    let age4 = prompt('나이를 입력해주세요.', 100);
+    alert(`당신의 나이는 ${age4}살 입니다.`); // 당신의 나이는 100살입니다.
+
+    // 형변환
+    // 문자형으로
+    let value = false;
+    value = String(value);
+    alert(typeof value); // string
+
+    // 숫자형으로
+    let value2 = "123";
+    value2 = Number(value2);
+    alert( Number("123z") );  // NaN ("z"를 숫자로 변환하는 데 실패함)
+
+    // 불린형으로
+    alert( Boolean(1) ); // 숫자 1(true)
+    alert( Boolean(0) ); // 숫자 0(false)
+
+    alert( Boolean("hello") ); // 문자열(true)
+    alert( Boolean("") ); // 빈 문자열(false)
+    // 주의
+    alert( Boolean("0") ); // true
+    alert( Boolean(" ") ); // ture
+
+    // 단항연산자
+    // 숫자형이 아닌 피연산자는 숫자형으로 변화합니다.
+    alert( +true ); // 1
+    alert( +"" );   // 0
+
+
+
+  </script>
+</body>
+</html>

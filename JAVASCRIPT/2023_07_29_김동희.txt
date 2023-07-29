@@ -1,0 +1,41 @@
+자바스크립트
+
+참조할 사이트
+* 솟컷
+* javascript cheatsheet
+* 치트시트 컨닝페이퍼
+* documents
+* javascript info
+
+웹을 동적으로 처리하기 위한 언어
+브라우저 안에서만 사용 가능
+해석기 해석 엔진 (V8)
+브라우저에 의존하게 된다.
+
+노드JS
+브라우저 밖으로 자바스크립트 언어를 사용하도록 해준다.
+언어 타입스크립트 슈퍼셋
+
+코딩컨벤션
+코딩가이드
+코딩스타일
+
+formatter
+단축키 ctrl + F
+
+라이브서버
+마우스우클릭 Open with liveserver
+
+javascript code snippets (자투리 코드 빠르게 작성할 수 있는 익스텐션)
+
+에밋
+
+루프백주소 127.0.0.1 localhost
+
+라이브서버 5500
+
+80포트
+
+path 익스텐션
+
+
