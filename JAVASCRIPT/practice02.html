@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    "use strict"
+    // 구구단 입력받고 출력하기.
+    //let num1 = prompt("구구단 계산기입니다. 첫번째 숫자를 입력하세요.")
+    //let num2 = prompt("다음 숫자를 입력하세요")
+    //alert(`계산된 구구단 값은 ${num1 * num2} 입니다.`)
+    let gugudan = prompt("몇단을 출력할까요")
+    let result = gugudan;
+    for (let g = 1; g < 10; g++) {
+      let gugudan_value = gugudan * g
+      result += `${gugudan} * ${g} 는 ${gugudan_value} 입니다. \n`
+    }
+    if (result != "")
+      console.log(result);
+
+    // 구구단 console 찍기.
+    for (let i = 1; i < 10; i++) {
+      console.log(`${i}단`)
+      for (let j = 1; j < 10; j++) {
+        let msg = i * j;
+        console.log(`${i} * ${j} 는 ${msg} 입니다.`);
+        console.log('%d * %d = %d', i, j, msg)
+      }
+    }
+  </script>
+</body>
+
+</html>
